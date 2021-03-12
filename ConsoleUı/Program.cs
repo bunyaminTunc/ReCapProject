@@ -1,8 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
-using System;
 
 namespace ConsoleUı
 {
@@ -10,28 +8,96 @@ namespace ConsoleUı
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
-            {
-                Console.WriteLine(car.BrandName+"/"+car.ColorName+"/"+car.DailyPrice);
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //Rental rental = new Rental();            
+            //rental.CarId = 3;
+            //rental.CustomerId = 3;
+            //rental.RentDate = System.DateTime.Today;           
+            //rentalManager.Add(rental);
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental();
 
-            }
+            rental.CarId = 6;
+            rental.CustomerId = 1;
+            rental.RentDate = System.DateTime.Today;
+            rental.ReturnDate = null;
+            rentalManager.Rent(rental);
 
 
-            // CarGetAll(carManager);
 
 
+
+
+            // RentalUpdate();
+            // CustomerAdded();
+            // UserAdded();
+            //AddedCar();
+            // CarGetAll();
         }
 
-        private static void CarGetAll(CarManager carManager)
+        private static void RentalUpdate()
         {
-            
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            foreach (var car in carManager.GetAll())
+            Rental rental = new Rental()
             {
-                Console.WriteLine(car.Description);
+                Id = 1,
+                CarId = 1,
+                RentDate = System.DateTime.Today,
+                CustomerId = 5
+            };
 
-            }
+            rentalManager.Update(rental);
         }
-    }
+
+        private static void CustomerAdded()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Customer customer = new Customer();
+
+            customer.UserId = 5;
+            customer.CompanyName = "Eoztrk";
+
+            customerManager.Add(customer);
+        }
+
+        private static void UserAdded()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            User user = new User();
+            user.FirstName = "ece";
+            user.LastName = "öztürk";
+            user.Email = "ece@mail.com";
+            user.Password = "1234as";
+
+            userManager.Add(user);
+        }
+
+        private static void AddedCar()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            Car car1 = new Car();
+            car1.BrandId = 1;
+            car1.ColorId = 6;
+            car1.DailyPrice = 231;
+            car1.ModelYear = 2021;
+            car1.Description = "Deneme5";
+            carManager.Add(car1);
+        }
+
+        //private static void CarGetAll()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
+
+        //    foreach (var car in carManager.GetAll())
+        //    {
+        //        Console.WriteLine(car.);
+
+        //    }
+
+
+        //}
+    } 
 }
