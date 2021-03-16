@@ -42,10 +42,6 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int carId)
-        {
-            var result=_carSe
-        }
+        
     }
 }

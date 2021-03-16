@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autoface.Validation;
 using Core.Entities.DTOs;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
@@ -20,6 +22,8 @@ namespace Business.Concrete
 
         }
 
+
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length >= 2)
@@ -37,7 +41,7 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(carId));
+            return new SuccessDataResult<Car>(_carDal.Get(c=>c.Id==carId));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
