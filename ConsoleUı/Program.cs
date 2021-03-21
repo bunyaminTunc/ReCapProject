@@ -69,7 +69,7 @@ namespace ConsoleUı
             user.FirstName = "ece";
             user.LastName = "öztürk";
             user.Email = "ece@mail.com";
-            user.Password = "1234as";
+           
 
             userManager.Add(user);
         }

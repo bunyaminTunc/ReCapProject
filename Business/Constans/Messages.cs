@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constans
@@ -17,5 +18,6 @@ namespace Business.Constans
         internal static string ReturnDateIsNull = "araba teslim edilmemiş";
         internal static string ArabaTeslimEdildi = "araba teslim edildi";
         internal static string RentalUpdate = "kira güncellendi";
+        internal static string AuthorizationDenied = "Yetkiniz yok.";
     }
 }
